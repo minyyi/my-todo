@@ -2,7 +2,7 @@ import React from "react";
 import { styled } from "styled-components";
 import { useNavigate } from "react-router-dom";
 
-export default function Layout(props) {
+export default function Layout({ children }) {
   const navigate = useNavigate();
 
   const clicktoHome = () => {
@@ -22,41 +22,55 @@ export default function Layout(props) {
     <Container>
       <Appbar>
         <NavBar>
-          <Tab>
+          <Tab1>
             <Logo onClick={clicktoHome}>My task</Logo>
-          </Tab>
+          </Tab1>
 
-          <Tab>
+          <Tab2>
             <P onClick={clicktoHome}>Home</P>
             <P onClick={clickAddButton}>ADD Task</P>
             <P onClick={clickReactButton}>React Todo</P>
             <P onClick={clickMy}>My Todo</P>
-          </Tab>
+          </Tab2>
         </NavBar>
       </Appbar>
       <Body>
-        <BodyDiv>BODY{props.children}</BodyDiv>
+        <BodyDiv>{children}</BodyDiv>
       </Body>
       <Footer>
-        <Div>
-          <p style={{ fontSize: "1.2rem" }}>My task</p>
-          <p>Copyright © 2023 All rights reserved</p>
-          <p style={{ fontSize: "0.8rem" }}>Powered By</p>
-          <a href="https://www.site123.com" style={{ color: "#c07848" }}>
-            SITE123
-          </a>{" "}
-          <span>-</span>
-          <a href="https://www.site123.com" style={{ color: "#c07848" }}>
-            Create your own website
-          </a>
-          <Copyright> OTT 2023 All Rights Reserved.</Copyright>
-        </Div>
-        <Div>
+        <Div1>
+          <p style={{ fontSize: "1.2rem", margin: "0" }}>My task</p>
+          <p style={{ fontSize: "0.8rem", margin: "0" }}>
+            Copyright © 2023 All rights reserved
+          </p>
+          <InnerDiv>
+            <p style={{ fontSize: "0.8rem", margin: "0" }}>Powered By </p>
+            <a
+              href="https://www.site123.com"
+              style={{
+                fontSize: "0.8rem",
+                color: "#c07848",
+                margin: "0",
+                marginLeft: "4px",
+              }}
+            >
+              SITE123
+            </a>{" "}
+            <span style={{ fontSize: "0.8rem", margin: "0 2px" }}>-</span>
+            <a
+              href="https://www.site123.com"
+              style={{ fontSize: "0.8rem", color: "#c07848", margin: "0" }}
+            >
+              Create your own website
+            </a>
+          </InnerDiv>
+        </Div1>
+        <Div2>
           <FooterP onClick={clicktoHome}>Home</FooterP>
           <FooterP onClick={clickAddButton}>ADD Task</FooterP>
           <FooterP onClick={clickReactButton}>React Todo</FooterP>
           <FooterP onClick={clickMy}>My Todo</FooterP>
-        </Div>
+        </Div2>
       </Footer>
     </Container>
   );
@@ -75,33 +89,51 @@ const Appbar = styled.div`
 `;
 
 const NavBar = styled.div`
+  height: 100%;
+  padding: 0 15px;
   display: flex;
   justify-content: space-between;
 `;
 
-const Tab = styled.div`
+const Tab1 = styled.div`
   display: flex;
   column-gap: 30px;
   align-items: center;
+
   &:hover {
     cursor: pointer;
     color: #f2e3d9;
-    opacity: 1;
+    opacity: 0.8;
   }
+`;
+const Tab2 = styled.div`
+  display: flex;
+  column-gap: 30px;
+  align-items: center;
+  text-align: center;
 `;
 
 const Logo = styled.p`
   font-family: var(--font_logo), "Open Sans", Arial, sans-serif;
   font-weight: 700;
-  font-size: 29px;
+  font-size: 30px;
+  text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.1);
   color: #f2e3d9;
-  opacity: 0.8;
+  opacity: 1;
+  letter-spacing: 3px;
+  text-align: center;
 `;
 
 const P = styled.p`
   color: #f2e3d9;
-  font-size: 19px;
+  opacity: 0.8;
+  font-size: 20px;
   font-family: var(--font_menu), "Open Sans", Arial, sans-serif;
+  &:hover {
+    cursor: pointer;
+    color: #f2e3d9;
+    opacity: 1;
+  }
 `;
 
 const Body = styled.div`
@@ -116,23 +148,37 @@ const BodyDiv = styled.div`
 
 const Footer = styled.div`
   height: 80px;
+  padding: 40px 0 100px;
 
   display: flex;
-  justify-content: center;
-  align-items: center;
+  justify-content: space-around;
+  align-items: flex-start;
 
-  background-color: lightgray;
-  opacity: 0.7;
+  background-color: #fff;
+  border: 3px solid black;
 `;
-const Div = styled.div`
-  width: 1200px;
+const Div1 = styled.div`
   display: flex;
-  align-items: space-around;
+  flex-direction: column;
+  align-content: center;
+`;
+const InnerDiv = styled.div`
+  display: flex;
+`;
+const Div2 = styled.div`
+  display: flex;
+  text-align: right;
 `;
 const FooterP = styled.p`
+  color: black;
+  margin: 0 10px;
+  padding: 0;
   text-transform: uppercase;
-  font-size: 0.8rem;
-`;
-const Copyright = styled.span`
-  font-size: 12px;
+  font-size: 0.9rem;
+  opacity: 1;
+  &:hover {
+    cursor: pointer;
+    color: #c07848;
+    opacity: 1;
+  }
 `;

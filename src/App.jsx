@@ -1,6 +1,8 @@
 import Layout from "./component/Layout";
 import AddTask from "./pages/AddTask";
 import Home from "./pages/Home";
+import ReactTodo from "./pages/ReactTodo";
+import MyTodo from "./pages/MyTodo";
 
 function App() {
   return (
@@ -8,8 +10,8 @@ function App() {
       <Layout>
         <Home />
         <AddTask />
-        <AddTask />
-        <AddTask />
+        <ReactTodo />
+        <MyTodo />
       </Layout>
     </>
   );

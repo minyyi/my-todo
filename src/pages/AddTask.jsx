@@ -1,3 +1,7 @@
 export default function AddTask() {
-  return <></>;
+  return (
+    <>
+      <div>add task</div>
+    </>
+  );
 }
