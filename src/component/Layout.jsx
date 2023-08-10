@@ -86,6 +86,9 @@ const Appbar = styled.div`
   margin: 0;
   background-color: #c07848;
   border-bottom: 1px solid #c07848;
+  box-shadow: 0 0.2px 9px;
+  position: sticky;
+  top: 0;
 `;
 
 const NavBar = styled.div`
@@ -142,20 +145,20 @@ const Body = styled.div`
 `;
 
 const BodyDiv = styled.div`
-  width: 1200px;
+  /*   width: 1200px;
+ */
   margin: 0 auto;
 `;
 
 const Footer = styled.div`
   height: 80px;
-  padding: 40px 0 100px;
+  padding: 40px 0;
 
   display: flex;
   justify-content: space-around;
   align-items: flex-start;
 
   background-color: #fff;
-  border: 3px solid black;
 `;
 const Div1 = styled.div`
   display: flex;
