@@ -29,7 +29,7 @@ export default function Layout({ children }) {
           <Tab2>
             <P onClick={clicktoHome}>Home</P>
             <P onClick={clickAddButton}>ADD Task</P>
-            <P onClick={clickReactButton}>React Todo</P>
+            <P onClick={clickReactButton}>Recent Todo</P>
             <P onClick={clickMy}>My Todo</P>
           </Tab2>
         </NavBar>
@@ -68,7 +68,7 @@ export default function Layout({ children }) {
         <Div2>
           <FooterP onClick={clicktoHome}>Home</FooterP>
           <FooterP onClick={clickAddButton}>ADD Task</FooterP>
-          <FooterP onClick={clickReactButton}>React Todo</FooterP>
+          <FooterP onClick={clickReactButton}>Recent Todo</FooterP>
           <FooterP onClick={clickMy}>My Todo</FooterP>
         </Div2>
       </Footer>
@@ -158,6 +158,7 @@ const Footer = styled.div`
   justify-content: space-around;
   align-items: flex-start;
 
+  border-top: solid 2px #c07848;
   background-color: #fff;
 `;
 const Div1 = styled.div`
