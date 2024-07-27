@@ -49,6 +49,7 @@ export const addTodo = createAsyncThunk(
 // Remove todo
 export const removeTodo = createAsyncThunk("todos/removeTodo", async (id) => {
   try {
+    console.log("삭제", id);
     await deleteDoc(doc(db, "task", id));
     // await dispatch(removeTodo(id));
     console.log("Todo successfully deleted from Firebase and Redux");
@@ -262,12 +263,15 @@ const todosSlice = createSlice({
       })
       .addCase(removeTodo.fulfilled, (state, action) => {
         state.entities.todos = state.entities.todos.filter((todo) => {
-          return todo.id !== action.payload?.id;
+          console.log(current(todo));
+
+          // return todo.id !== id;
+          return todo.id !== action.meta.arg;
         });
       })
 
       .addCase(completeTodoAsync.fulfilled, (state, action) => {
-        console.log("Action payload:", action.payload);
+        console.log("Action payload id:", action.payload.id);
         const { id, done } = action.payload;
         state.entities.todos = state.entities.todos.map((todo) => {
           console.log(current(todo));
