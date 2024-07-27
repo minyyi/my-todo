@@ -6,9 +6,9 @@ import { removeTodo, completeTodoAsync } from "../../RTK/todosSlice";
 const CardComponent = ({ todo, onRemove, onDoneClick, clickCard }) => {
   return (
     <>
-      <CardDiv id="section5">
+      <CardDiv>
         <Card>
-          <ImgDiv onClick={clickCard}></ImgDiv>
+          <ImgDiv onClick={() => clickCard(todo?.id, "donedosection")}></ImgDiv>
           <CardTitle>{todo?.title}</CardTitle>
           <P>{todo?.description}</P>
           <More>Read More </More>
@@ -49,7 +49,7 @@ const Done = ({ clickCard }) => {
 
   return (
     <>
-      <Container>
+      <Container id="section5">
         <TitleDiv>
           <Title> Done list</Title>
         </TitleDiv>
@@ -131,7 +131,7 @@ const CardTitle = styled.a`
   font-size: 20px;
   font-weight: 900;
   color: #c07848;
-  margin: 15px 12px;
+  margin: 15px 0;
 `;
 
 const P = styled.p`

@@ -1,13 +1,16 @@
 import React from "react";
 import { styled } from "styled-components";
-import { useNavigate } from "react-router-dom";
 import { scrollToSection } from "../RTK/todosSlice";
 import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
 export default function Layout({ children }) {
-  const navigate = useNavigate();
+  const navigator = useNavigate();
   const dispatch = useDispatch();
 
+  const clickLogo = () => {
+    navigator("/");
+  };
   // const scrollToSection = (sectionId) => {
   //   const element = document.getElementById(sectionId);
   //   if (element) {
@@ -16,12 +19,7 @@ export default function Layout({ children }) {
   // };
   const clickMenu = (sectionId) => {
     dispatch(scrollToSection(sectionId));
-  };
-  const clickReactButton = () => {
-    navigate("/react");
-  };
-  const clickMy = () => {
-    navigate("/my");
+    console.log("스크롤", "스크롤");
   };
 
   return (
@@ -29,7 +27,7 @@ export default function Layout({ children }) {
       <Appbar>
         <NavBar>
           <Tab1>
-            <Logo onClick={() => clickMenu("section1")}>My task</Logo>
+            <Logo onClick={clickLogo}>My task</Logo>
           </Tab1>
 
           <Tab2>

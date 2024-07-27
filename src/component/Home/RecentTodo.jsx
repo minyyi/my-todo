@@ -42,9 +42,9 @@ export default function ReactTodo({ clickCard }) {
         {firstTodo ? (
           <InnerBox>
             <TextDiv>
-              <div>
+              <TextInnerDiv>
                 <P>{firstTodo?.description}</P>
-              </div>
+              </TextInnerDiv>
               <ButtonDiv>
                 <Button onClick={() => onRemove(firstTodo?.id)}>삭제</Button>
                 <Button onClick={() => onDoneClick(firstTodo?.id)}>완료</Button>
@@ -80,6 +80,9 @@ const TextDiv = styled.div`
   display: flex;
   flex-direction: column;
   width: 500px;
+`;
+const TextInnerDiv = styled.div`
+  margin-bottom: 10px;
 `;
 const ImgDiv = styled.div`
   display: flex;

@@ -43,9 +43,9 @@ const Detail = (props) => {
         <Hr></Hr>
         <InnerBox>
           <TextDiv>
-            <div>
+            <TextInnerDiv>
               <P>{findDetail?.description}</P>
-            </div>
+            </TextInnerDiv>
             <ButtonDiv>
               <Button onClick={() => onRemove(findDetail?.id)}>삭제</Button>
               <Button onClick={backClick}>뒤로</Button>
@@ -82,6 +82,10 @@ const TextDiv = styled.div`
   flex-direction: column;
   width: 500px;
 `;
+const TextInnerDiv = styled.div`
+  margin-bottom: 10px;
+`;
+
 const ImgDiv = styled.div`
   display: flex;
   width: 538px;

@@ -269,22 +269,10 @@ const todosSlice = createSlice({
       .addCase(completeTodoAsync.fulfilled, (state, action) => {
         console.log("Action payload:", action.payload);
         const { id, done } = action.payload;
-        state.entities.todos = state.entities.todos
-          .map((todo) => {
-            console.log(current(todo));
-            return todo.id === id ? { ...todo, done: done } : todo;
-          })
-          .addCase(scrollToSection.pending, (state) => {
-            state.status = "loading";
-          })
-          .addCase(scrollToSection.fulfilled, (state, action) => {
-            state.status = "succeeded";
-            state.currentSection = action.payload;
-          })
-          .addCase(scrollToSection.rejected, (state, action) => {
-            state.status = "failed";
-            state.error = action.payload;
-          });
+        state.entities.todos = state.entities.todos.map((todo) => {
+          console.log(current(todo));
+          return todo.id === id ? { ...todo, done: done } : todo;
+        });
         // const todo = state.entities.todos.find(
         //   (todo) => todo.id === action.payload.id
         // );
@@ -293,6 +281,19 @@ const todosSlice = createSlice({
         // }
         console.log(state.entities.todos);
         console.log("completeTodo id:", action.payload?.id);
+      })
+      .addCase(scrollToSection.pending, (state) => {
+        state.status = "loading";
+      })
+      .addCase(scrollToSection.fulfilled, (state, action) => {
+        state.status = "succeeded";
+        state.currentSection = action.payload;
+        console.log("스크롤성공!");
+      })
+      .addCase(scrollToSection.rejected, (state, action) => {
+        state.status = "failed";
+        state.error = action.payload;
+        console.log("스크롤실패", state.error);
       });
   },
 });

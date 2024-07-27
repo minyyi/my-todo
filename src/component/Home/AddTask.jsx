@@ -137,7 +137,7 @@ export default function AddTask() {
           >
             Add todo
           </Button>
-          <p>{addTodos?.loading === "pending" ? "로딩중" : "완료"}</p>
+          {/* <p>{addTodos?.loading === "pending" ? "로딩중" : "완료"}</p> */}
         </InnerContainer>
       </Container>
     </>
