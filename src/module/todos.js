@@ -10,7 +10,7 @@ const TOGGLE = "TOGGLE";
 
 // let id = 3; // ADD 호출 시 1씩 더해진다. id 값은 각 todo 객체가 들고 있게 될 고윳값이다.
 export const addTodo = ({ id, title, description }) => {
-  console.log({ id, title, description });
+  console.log("리덕스", { id, title, description });
 
   return {
     type: ADD,

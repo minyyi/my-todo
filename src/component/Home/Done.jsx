@@ -1,12 +1,12 @@
 import { styled } from "styled-components";
 import img2 from "../../asset/img2.webp";
 import { useSelector, useDispatch } from "react-redux";
-import { removeAsync, completeTodoAsync } from "../../RTK/todosSlice";
+import { removeTodo, completeTodoAsync } from "../../RTK/todosSlice";
 
 const CardComponent = ({ todo, onRemove, onDoneClick, clickCard }) => {
   return (
     <>
-      <CardDiv>
+      <CardDiv id="section5">
         <Card>
           <ImgDiv onClick={clickCard}></ImgDiv>
           <CardTitle>{todo?.title}</CardTitle>
@@ -14,7 +14,11 @@ const CardComponent = ({ todo, onRemove, onDoneClick, clickCard }) => {
           <More>Read More </More>
           <ButtonDiv>
             <Button onClick={() => onRemove(todo?.id)}>삭제</Button>
-            <Button onClick={() => onDoneClick(todo?.id)}>다시</Button>
+            <Button
+              onClick={() => onDoneClick({ id: todo?.id, done: todo?.done })}
+            >
+              다시
+            </Button>
           </ButtonDiv>
         </Card>
       </CardDiv>
@@ -28,14 +32,16 @@ const Done = ({ clickCard }) => {
   const todos = useSelector((state) => state?.todosSlice);
   console.log(todos);
   const onRemove = (id) => {
-    dispatch(removeAsync(id));
+    dispatch(removeTodo(id));
     console.log("삭제");
   };
-  const onDoneClick = (id) => {
-    dispatch(completeTodoAsync(id));
+  const onDoneClick = ({ id, done }) => {
+    console.log("클릭", id, done);
+    dispatch(completeTodoAsync({ id, done }));
+    // console.log("클릭", id, done)
     console.log("완료");
   };
-
+  console.log(todos?.entities?.todos);
   const isDoneArray = todos?.entities?.todos?.filter(
     (todo) => todo?.done === true
   );

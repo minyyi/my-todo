@@ -1,15 +1,21 @@
 import React from "react";
 import { styled } from "styled-components";
 import { useNavigate } from "react-router-dom";
+import { scrollToSection } from "../RTK/todosSlice";
+import { useDispatch } from "react-redux";
 
 export default function Layout({ children }) {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
-  const clicktoHome = () => {
-    navigate("/");
-  };
-  const clickAddButton = () => {
-    navigate("/add");
+  // const scrollToSection = (sectionId) => {
+  //   const element = document.getElementById(sectionId);
+  //   if (element) {
+  //     element.scrollIntoView({ behavior: "smooth" });
+  //   }
+  // };
+  const clickMenu = (sectionId) => {
+    dispatch(scrollToSection(sectionId));
   };
   const clickReactButton = () => {
     navigate("/react");
@@ -23,14 +29,15 @@ export default function Layout({ children }) {
       <Appbar>
         <NavBar>
           <Tab1>
-            <Logo onClick={clicktoHome}>My task</Logo>
+            <Logo onClick={() => clickMenu("section1")}>My task</Logo>
           </Tab1>
 
           <Tab2>
-            <P onClick={clicktoHome}>Home</P>
-            <P onClick={clickAddButton}>ADD Task</P>
-            <P onClick={clickReactButton}>Recent Todo</P>
-            <P onClick={clickMy}>My Todo</P>
+            <P onClick={() => clickMenu("section1")}>Home</P>
+            <P onClick={() => clickMenu("section2")}>ADD Task</P>
+            <P onClick={() => clickMenu("section3")}>Recent Todo</P>
+            <P onClick={() => clickMenu("section4")}>My Todo</P>
+            <P onClick={() => clickMenu("section5")}>Done</P>
           </Tab2>
         </NavBar>
       </Appbar>
@@ -66,10 +73,11 @@ export default function Layout({ children }) {
           </InnerDiv>
         </Div1>
         <Div2>
-          <FooterP onClick={clicktoHome}>Home</FooterP>
-          <FooterP onClick={clickAddButton}>ADD Task</FooterP>
-          <FooterP onClick={clickReactButton}>Recent Todo</FooterP>
-          <FooterP onClick={clickMy}>My Todo</FooterP>
+          <FooterP onClick={() => clickMenu("section1")}>Home</FooterP>
+          <FooterP onClick={() => clickMenu("section2")}>ADD Task</FooterP>
+          <FooterP onClick={() => clickMenu("section3")}>Recent Todo</FooterP>
+          <FooterP onClick={() => clickMenu("section4")}>My Todo</FooterP>
+          <FooterP onClick={() => clickMenu("section5")}>Done</FooterP>
         </Div2>
       </Footer>
     </Container>

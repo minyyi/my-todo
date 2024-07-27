@@ -1,12 +1,12 @@
 import Layout from "./component/Layout";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { useSelector } from "react-redux";
 import Home from "./pages/Home";
 import Detail from "./pages/Detail";
 
 function App() {
   const [todos, setTodos] = useState([]);
-  console.log({ todos });
 
   const checkedToggle = (id) => {
     let newArray = [...todos]?.map((todo) =>

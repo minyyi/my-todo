@@ -7,6 +7,8 @@ import {
   completeTodoAsync,
   getFetchAsync,
 } from "../../RTK/todosSlice";
+import { updateDoc, doc } from "firebase/firestore";
+import { db } from "../../firebase/firebase";
 
 const MyTodo = ({ clickCard }) => {
   const dispatch = useDispatch();
@@ -19,12 +21,15 @@ const MyTodo = ({ clickCard }) => {
   console.log(todos);
 
   const onRemove = (id) => {
+    console.log("id", id);
     dispatch(removeTodo(id));
     console.log("removeTodo", id);
     console.log("삭제");
   };
-  const onDoneClick = (id) => {
-    dispatch(completeTodoAsync(id));
+  const onDoneClick = ({ id, done }) => {
+    console.log("클릭마이투두", id, done);
+
+    dispatch(completeTodoAsync({ id, done }));
     console.log("완료");
   };
 
@@ -34,7 +39,7 @@ const MyTodo = ({ clickCard }) => {
 
   return (
     <>
-      <Container>
+      <Container id="section4">
         <TitleDiv>
           <Title> My Todo</Title>
         </TitleDiv>
@@ -52,7 +57,13 @@ const MyTodo = ({ clickCard }) => {
                   <More>Read More </More>
                   <ButtonDiv>
                     <Button onClick={() => onRemove(todo?.id)}>삭제</Button>
-                    <Button onClick={() => onDoneClick(todo?.id)}>완료</Button>
+                    <Button
+                      onClick={() =>
+                        onDoneClick({ id: todo?.id, done: todo?.done })
+                      }
+                    >
+                      완료
+                    </Button>
                   </ButtonDiv>
                 </Card>
               </CardDiv>

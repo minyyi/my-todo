@@ -3,15 +3,13 @@ import img1 from "../../asset/img1.webp";
 
 const Top = () => {
   return (
-    <>
-      <Div>
-        <ImgDiv>
-          <DivP>
-            <P>just Do it!</P>
-          </DivP>
-        </ImgDiv>
-      </Div>
-    </>
+    <Div id="section1">
+      <ImgDiv>
+        <DivP>
+          <P>just Do it!</P>
+        </DivP>
+      </ImgDiv>
+    </Div>
   );
 };
 export default Top;

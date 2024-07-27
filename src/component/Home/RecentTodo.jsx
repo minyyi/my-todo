@@ -28,12 +28,13 @@ export default function ReactTodo({ clickCard }) {
   //   (todo) => todo?.isDone === false
   // );
 
-  const firstTodo = todos?.entities?.todos[todos?.entities?.todos?.length - 1];
+  const firstTodo = todos?.entities?.todos[0];
+  // [todos?.entities?.todos?.];
   console.log("firstTodo", firstTodo);
 
   return (
     <>
-      <Container>
+      <Container id="section3">
         <TitleDiv>
           <Title>{firstTodo?.title}</Title>
         </TitleDiv>

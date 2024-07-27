@@ -1,24 +1,31 @@
 import { styled } from "styled-components";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { addTodo } from "../../RTK/todosSlice";
+import { addDoc } from "firebase/firestore";
+import { TASK_COLLECTION } from "../../firebase/firebase";
 
-const rand = (num = 8) => {
-  return Math.random()
-    .toString(36)
-    .substring(2, 2 + num);
-};
+// const rand = (num = 8) => {
+//   return Math.random()
+//     .toString(36)
+//     .substring(2, 2 + num);
+// };
 
 export default function AddTask() {
-  const dispatch = useDispatch();
   const [todos, setTodos] = useState({
-    id: rand(),
+    // id: rand(),
     title: "",
     description: "",
     done: false,
   });
+  const dispatch = useDispatch();
 
   const addTodos = useSelector((state) => state?.todosSlice);
+  useEffect(() => {
+    if (addTodos?.error?.message) {
+      window.alert(addTodos?.error?.message);
+    }
+  }, [addTodos?.error?.message]);
   console.log(addTodos);
   // const clickAddTodo = (name, message) => {
   //   dispatch(add(name, message));
@@ -48,29 +55,54 @@ export default function AddTask() {
     });
   };
 
-  const clickAddTodo = ({ id, title, description, done }) => {
-    console.log("ADD", { id, title, description, done });
-    dispatch(addTodo({ id, title, description, done }));
-    if (todos?.title === "") {
+  const clickAddTodo = async ({ title, description, done }) => {
+    if (title === "") {
       alert("제목을 입력해주세요");
-    } else if (todos?.description === "") {
+      return;
+    }
+    if (description === "") {
       alert("내용을 입력해주세요");
-    } else {
+      return;
+    }
+
+    try {
+      dispatch(addTodo({ title, description, done }));
+
       setTodos({
-        id: rand(),
+        // id: rand(),
         title: "",
         description: "",
         done: false,
       });
-      // setId((id) => id + 1);
+    } catch (error) {
+      console.error("Error adding document: ", error);
     }
   };
+
+  // const clickAddTodo = ({ id, title, description, done }) => {
+  //   console.log("ADD", { id, title, description, done });
+  //   dispatch(addTodo({ id, title, description, done }));
+  //   if (todos?.title === "") {
+  //     alert("제목을 입력해주세요");
+  //   } else if (todos?.description === "") {
+  //     alert("내용을 입력해주세요");
+  //   } else {
+  //     setTodos({
+  //       id: rand(),
+  //       title: "",
+  //       description: "",
+  //       done: false,
+  //     });
+  //     // setId((id) => id + 1);
+  //   }
+  // };
+  console.log(TASK_COLLECTION);
   console.log(todos);
   console.log(typeof addTodos?.loading);
 
   return (
     <>
-      <Container>
+      <Container id="section2">
         <InnerContainer>
           <Title>add task</Title>
           <Hr />
@@ -96,7 +128,7 @@ export default function AddTask() {
             type="submit"
             onClick={() =>
               clickAddTodo({
-                id: todos?.id,
+                // id: todos?.id,
                 title: todos?.title,
                 description: todos?.description,
                 done: todos?.done,
